@@ -1,0 +1,26 @@
+-- DDL classificado
+-- CREATE
+-- ALTER
+-- DROP
+
+CREATE DATABASE db_classificado
+
+USE db_classificado
+
+CREATE TABLE Usuarios(
+	Id INT PRIMARY KEY NOT NULL,
+	Nome VARCHAR(50) NOT NULL,
+	Email VARCHAR(50) NOT NULL,
+	Senha VARCHAR(100) NOT NULL,
+	Endereco VARCHAR(100) NULL
+)
+
+CREATE TABLE Anuncios(
+	Id INT PRIMARY KEY NOT NULL,
+	Descricao VARCHAR(50)NOT NULL,
+	Preço FLOAT NOT NULL,
+	FK_Criador INT NOT NULL,
+	FOREIGN KEY (FK_Criador) REFERENCES Usuarios (Id)
+)
+
+

@@ -1,0 +1,44 @@
+-- DDL
+-- CREATE
+-- ALTER
+-- DROP
+
+CREATE DATABASE db_ecommerce
+
+USE db_ecommerce
+
+CREATE TABLE Usuarios(
+	Id INT PRIMARY KEY NOT NULL,
+	Nome VARCHAR(50) NOT NULL,
+	Email VARCHAR(50) NOT NULL,
+	Senha VARCHAR(100) NOT NULL,
+	Endereco VARCHAR(100) NULL
+)
+
+CREATE TABLE Plataforma(
+	Id INT PRIMARY KEY NOT NULL,
+	InformacoesPagina VARCHAR(MAX) NOT NULL,
+	FK_Usuarios INT NOT NULL,
+	FK_Produtos INT NOT NULL,
+	FK_Pedidos INT NOT NULL
+)
+
+
+CREATE TABLE Produtos(
+	Id INT PRIMARY KEY IDENTITY NOT NULL,
+	NomeProduto VARCHAR(50) NOT NULL,
+	Descricao VARCHAR(MAX) NOT NULL,
+	Preco FLOAT NULL,
+	FK_Usuarios INT NOT NULL,
+	FOREIGN KEY (FK_Usuarios) REFERENCES Usuarios (Id)
+)
+
+CREATE TABLE Pedidos(
+    id INT PRIMARY KEY NOT NULL,     
+	Descricao VARCHAR(MAX) NOT NULL,
+	FK_Usuarios INT NOT NULL,
+	FK_Produtos INT NOT NULL,
+	FOREIGN KEY (FK_Usuarios) REFERENCES Usuarios (Id),
+	FOREIGN KEY (FK_Produtos) REFERENCES Produtos (Id)
+
+)
